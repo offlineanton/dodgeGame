@@ -3,6 +3,7 @@ var activeKeys = [];
 //access elements quicker
 var player = $("#player");
 var gameArea = $("#gameArea");
+var coin = $("#coin");
 
 //dimension of game area
 
@@ -10,6 +11,8 @@ var gameAreaRight = gameArea.offset().left + gameArea.width();
 var gameAreaLeft = gameArea.offset().left;
 var gameAreaTop = gameArea.offset().top;
 var gameAreaBottom = gameArea.offset().top + gameArea.height();
+
+var coinCount = 0;
 
 
 // List of keyCodes I might use
@@ -39,6 +42,10 @@ $(window).on("keydown",function(e){
 $(window).on("keyup",function(e){
   activeKeys[e.keyCode] = false;
 })
+
+
+coinSpawn();
+
 
 
 //the whole game loop
@@ -91,4 +98,21 @@ function move(direction){
   if(direction == "left"){
     player.css({"left": "-=1.5px"});
   }
+}
+
+//coin stuff
+function coinSpawn(){
+    //get random x,y for coin to spawn
+    //coin is 25px, 34px size
+
+    var tempX = Math.floor(Math.random() * 775) + 1;
+    var tempY = Math.floor(Math.random() * 566) + 1;
+
+    coin.css({"left":tempX,"top":tempY,"display":"block"});
+
+    coinRight = coin.offset().left + coin.width();
+    coinLeft = coin.offset().left;
+    coinTop = coin.offset().top;
+    coinBottom = coin.offset().top + coin.height();
+
 }
