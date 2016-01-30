@@ -43,13 +43,19 @@ $(window).on("keyup",function(e){
   activeKeys[e.keyCode] = false;
 })
 
-
+// initial spawn coin
 coinSpawn();
 
 
 
 //the whole game loop
 playLoop = setInterval(function(){
+
+  if(touching(coin,player)){
+    coinCount++;
+    updateCoin();
+    coinSpawn();
+  }
 
   //get position of player
   playerRight = player.offset().left + player.width();
@@ -58,6 +64,7 @@ playLoop = setInterval(function(){
   playerBottom = player.offset().top + player.height();
 
 
+  //move player if they arent touching wall
 
   if(activeKeys[39] || activeKeys[68]){
     if(gameAreaRight > playerRight){
@@ -102,17 +109,28 @@ function move(direction){
 
 //coin stuff
 function coinSpawn(){
-    //get random x,y for coin to spawn
-    //coin is 25px, 34px size
+  //get random x,y for coin to spawn
+  //coin is 25px, 34px size
 
-    var tempX = Math.floor(Math.random() * 775) + 1;
-    var tempY = Math.floor(Math.random() * 566) + 1;
+  var tempX = Math.floor(Math.random() * 775) + 1;
+  var tempY = Math.floor(Math.random() * 566) + 1;
 
-    coin.css({"left":tempX,"top":tempY,"display":"block"});
+  coin.css({"left":tempX,"top":tempY,"display":"block"});
 
-    coinRight = coin.offset().left + coin.width();
-    coinLeft = coin.offset().left;
-    coinTop = coin.offset().top;
-    coinBottom = coin.offset().top + coin.height();
+}
 
+//updates the coin amount
+function updateCoin(){
+  document.getElementById("coinCount").innerHTML = "Coins: " + coinCount;
+
+}
+
+
+//check if two objects are touching
+//var example = $("player");
+
+function touching(object1,object2){
+  if (object1.offset().top + object1.height() > object2.offset().top && object1.offset().top < object2.offset().top + object2.height() && object1.offset().left + object1.width() > object2.offset().left && object1.offset().left < object2.offset().left + object2.width()){
+    return true;
+  }
 }
