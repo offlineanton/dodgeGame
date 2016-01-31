@@ -1,3 +1,4 @@
+//list of keys currently being pressed
 var activeKeys = [];
 
 //access elements quicker
@@ -5,14 +6,12 @@ var player = $("#player");
 var gameArea = $("#gameArea");
 var coin = $("#coin");
 
-//dimension of game area
-
-var gameAreaRight = gameArea.offset().left + gameArea.width();
-var gameAreaLeft = gameArea.offset().left;
-var gameAreaTop = gameArea.offset().top;
-var gameAreaBottom = gameArea.offset().top + gameArea.height();
-
 var coinCount = 0;
+var deathCount = 0;
+
+var alive = false;
+var paused = false;
+var init = false;
 
 
 // List of keyCodes I might use
@@ -46,49 +45,68 @@ $(window).on("keyup",function(e){
 // initial spawn coin
 coinSpawn();
 
+$(".start").on("click",function(){
+
+  alive = true;
+
+  $("#blackBack").animate({"opacity":0},function(){
+    player.css({"display":"block"});
+    $("#gameArea").animate({"width":"800px","height":"600px"});
+  })
+  $("#startScreen").animate({"top":"-250px"});
 
 
-//the whole game loop
-playLoop = setInterval(function(){
 
-  if(touching(coin,player)){
-    coinCount++;
-    updateCoin();
-    coinSpawn();
-  }
+  //the whole game loop
 
-  //get position of player
-  playerRight = player.offset().left + player.width();
-  playerLeft = player.offset().left;
-  playerTop = player.offset().top;
-  playerBottom = player.offset().top + player.height();
+  playLoop = setInterval(function(){
 
-
-  //move player if they arent touching wall
-
-  if(activeKeys[39] || activeKeys[68]){
-    if(gameAreaRight > playerRight){
-      move('right');
+    if(touching(coin,player)){
+      coinCount++;
+      updateCoin();
+      coinSpawn();
     }
-  }
 
-  if(activeKeys[37] || activeKeys[65]){
-    if(gameAreaLeft < playerLeft){
-      move('left');
-    }
-  }
+    //get position of player
+    playerRight = player.offset().left + player.width();
+    playerLeft = player.offset().left;
+    playerTop = player.offset().top;
+    playerBottom = player.offset().top + player.height();
 
-  if(activeKeys[38] || activeKeys[87]){
-    if(gameAreaTop < playerTop){
-      move('up');
+    //dimension of game area
+    var gameAreaRight = gameArea.offset().left + gameArea.width();
+    var gameAreaLeft = gameArea.offset().left;
+    var gameAreaTop = gameArea.offset().top;
+    var gameAreaBottom = gameArea.offset().top + gameArea.height();
+
+
+    //move player if they arent touching wall
+
+    if(activeKeys[39] || activeKeys[68]){
+      if(gameAreaRight > playerRight){
+        move('right');
+      }
     }
-  }
-  if(activeKeys[40] || activeKeys[83]){
-    if(gameAreaBottom > playerBottom){
-      move('down');
+
+    if(activeKeys[37] || activeKeys[65]){
+      if(gameAreaLeft < playerLeft){
+        move('left');
+      }
     }
-  }
+
+    if(activeKeys[38] || activeKeys[87]){
+      if(gameAreaTop < playerTop){
+        move('up');
+      }
+    }
+    if(activeKeys[40] || activeKeys[83]){
+      if(gameAreaBottom > playerBottom){
+        move('down');
+      }
+    }
+  })
 })
+
 
 
 //moves character when a key is active
@@ -128,6 +146,8 @@ function updateCoin(){
 
 //check if two objects are touching
 //var example = $("player");
+
+
 
 function touching(object1,object2){
   if (object1.offset().top + object1.height() > object2.offset().top && object1.offset().top < object2.offset().top + object2.height() && object1.offset().left + object1.width() > object2.offset().left && object1.offset().left < object2.offset().left + object2.width()){

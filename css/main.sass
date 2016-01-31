@@ -1,14 +1,17 @@
 *
   padding: 0
   margin: 0
+  font-family: sans-serif
 
 body
   background: #efefef
 
 #gameArea
   background: #111
-  width: 800px
-  height: 600px
+  width: 100%
+  height: 100vh
+  // width: 800px
+  // height: 600px
   margin: 0 auto
   position: absolute
   top: 50%
@@ -23,6 +26,7 @@ body
   top: 0
   left: 0
   z-index: 2
+  display: none
 
 #coin
   width: 20px
@@ -36,3 +40,51 @@ body
   right: 50px
   font-size: 30px
   font-family: sans-serif
+
+#deathCount
+  position: absolute
+  top: 100px
+  right: 50px
+  font-size: 30px
+  font-family: sans-serif
+
+#deathScreen,#startScreen,#pauseScreen
+  display: none
+  position: fixed
+  width: 20%
+  height: 200px
+  background: #eee
+  top: 25%
+  left: 40%
+  text-align: center
+  z-index: 3
+  box-sizing: border-box
+  padding: 20px
+
+#startScreen
+  display: block
+
+#blackBack
+  position: fixed
+  background: rgba(0,0,0,0.7)
+  top:0
+  left: 0
+  bottom: 0
+  right:0
+  z-index: 2
+  opacity: 1
+
+.start,.continue
+  font-size: 30px
+  padding: 10px
+  border: none
+  outline: none
+  background: #999
+  color: #111
+  margin-top: 20px
+  cursor: pointer
+
+p
+  text-align: center
+  font-size: 30px
+  padding: 10px
