@@ -1,52 +1,68 @@
 *
   padding: 0
   margin: 0
-  font-family: sans-serif
+  font-family: "Century Gothic","Arial",sans-serif
+
 
 body
-  background: #efefef
+  padding-top: 0
+  overflow: hidden
+  background: 111
 
-#gameArea
-  background: #111
+
+.box
   width: 100%
   height: 100vh
-  // width: 800px
-  // height: 600px
   margin: 0 auto
-  position: absolute
-  top: 50%
-  left: 50%
-  transform: translate(-50%,-50%)
+  background: #111
+  border: 1px solid black
+  position: relative
 
-#player
+
+
+
+.character
   width: 50px
   height: 50px
   background: yellow
+  background-size: cover
+  background-position: center
+  position: relative
+  left: 0px
+  right: 0px
+  top: 0px
+  bottom: 0px
+  z-index: 1
+  display: none
+
+
+.coin
   position: absolute
   top: 0
   left: 0
-  z-index: 2
   display: none
 
-#coin
-  width: 20px
-  height: 20px
-  background: gold
-  position: absolute
 
-#coinCount
-  position: absolute
-  top: 50px
-  right: 50px
+p
+  text-align: center
   font-size: 30px
-  font-family: sans-serif
+  padding: 10px
 
-#deathCount
-  position: absolute
-  top: 100px
-  right: 50px
-  font-size: 30px
-  font-family: sans-serif
+
+.ball
+  width: 50px
+  height: 50px
+  background: red
+  border-radius: 100%
+  position: relative
+  left: 50%
+  top: 50%
+  display: none
+  opacity: 0
+
+
+
+
 
 #deathScreen,#startScreen,#pauseScreen
   display: none
@@ -61,18 +77,10 @@ body
   box-sizing: border-box
   padding: 20px
 
+
 #startScreen
   display: block
 
-#blackBack
-  position: fixed
-  background: rgba(0,0,0,0.7)
-  top:0
-  left: 0
-  bottom: 0
-  right:0
-  z-index: 2
-  opacity: 1
 
 .start,.continue
   font-size: 30px
@@ -84,7 +92,33 @@ body
   margin-top: 20px
   cursor: pointer
 
-p
+
+#blackBack
+  position: fixed
+  background: rgba(0,0,0,0.7)
+  top:0
+  left: 0
+  bottom: 0
+  right:0
+  z-index: 2
+
+
+.block
+  display: none
+  position: absolute
+  top: 0
+  left: 0
+  width: 0px
+  height: 0px
+
+
+#message
+  position: absolute
+  z-index: 5
+  top: -30%
+  font-size: 120px
   text-align: center
-  font-size: 30px
-  padding: 10px
+  width: 100%
+  color: white
+  text-shadow: 1px 0 black,2px 0 black,3px 0 black,4px 0 black,5px 0 black,6px 0 black,7px 0 black,8px 0 black,9px 0 black,10px 0 black
+  display: none

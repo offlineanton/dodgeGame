@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
-  <title>Dodge Game</title>
-  <meta charset="utf-8"/>
-  <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <title>Dodge Game</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="author" content="Anton Williams"/>
+    <meta name="description" content="A game where you dodge balls"/>
+    <meta name="keywords" content="game,dodge,balls,ball,coin,collect,play"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
+
 <body>
-  <div id="gameArea">
-
-    <div id="player">:)</div>
-    <div id="coin"></div>
-
-  </div>
+    <h1 id="message"></h1>
 
 
-  <p id="coinCount">
-    Coins: 0
-  </p>
+    <div class="box">
+        <div class="character">:)</div>
+        <img src="img/coin.png" alt="coin" class="coin"/>
+        <img src="img/block.png" alt="mystery block" class="block"/>
 
-  <p id="deathCount">
-    Deaths: 0
-  </p>
-  
-  <div id="blackBack"></div>
+        <div class="ball" id="ball0"></div>
+        <div class="ball" id="ball1"></div>
+        <div class="ball" id="ball2"></div>
+        <div class="ball" id="ball3"></div>
+        <div class="ball" id="ball4"></div>
+        <div class="ball" id="ball5"></div>
+        <div class="ball" id="ball6"></div>
+        <div class="ball" id="ball7"></div>
+        <div class="ball" id="ball8"></div>
+        <div class="ball" id="ball9"></div>
+    </div>
 
-  <div id="startScreen">
-          <p>Welcome</p>
-          <button class="start">Play</button>
-  </div>
+    <p id="coinCounter">Coins: 0</p>
+    <p id="deathCounter">Deaths: 0</p>
 
-  <div id="deathScreen">
-       <p>You have died</p>
-       <button class="start">Play again</button>
-   </div>
+    <div id="blackBack"></div>
 
-   <div id="pauseScreen">
-       <p>Paused</p>
-       <button class="continue">Continue</button>
-   </div>
+    <div id="startScreen">
+        <p>Welcome</p>
+        <button class="start">Play</button>
+    </div>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
+    <div id="deathScreen">
+        <p>You have died</p>
+        <button class="start">Play again</button>
+    </div>
+
+    <div id="pauseScreen">
+        <p>Paused</p>
+        <button class="continue">Continue</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+
+
 </body>
 
 </html>
